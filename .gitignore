@@ -29,4 +29,4 @@ replay_pid*
 */.html
 */.xml
 build/reports
-build/tpm/CompileJava/
+build/tpm/CompileJava/*
