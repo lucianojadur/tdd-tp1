@@ -1,6 +1,7 @@
 package com.fiuba.tdd.service;
 
 import com.fiuba.tdd.domain.Course;
+import com.fiuba.tdd.domain.CreateCourseRequest;
 import com.fiuba.tdd.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,10 @@ public class CourseService {
     @Autowired
     private CourseRepository repo;
 
-    public Course addCourse(Course course) {
+    public Course addCourse(CreateCourseRequest newCourse) {
+        Course course = new Course();
+        course.setTitle(newCourse.getTitle());
+        course.setDescription(newCourse.getDescription());
         return repo.save(course);
     }
 

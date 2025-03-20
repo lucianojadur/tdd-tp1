@@ -2,6 +2,7 @@ package com.fiuba.tdd.controller;
 
 
 import com.fiuba.tdd.domain.Course;
+import com.fiuba.tdd.domain.CreateCourseRequest;
 import com.fiuba.tdd.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class CourseController {
 
 
     @PostMapping(path = "/courses", consumes = "application/json", produces = "application/json")
-    public Course post(@RequestBody Course course) {
-        return service.addCourse(course);
+    public Course post(@RequestBody CreateCourseRequest newCourse) {
+        return service.addCourse(newCourse);
     }
 
     @GetMapping(path = "/courses", produces = "application/json")
