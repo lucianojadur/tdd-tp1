@@ -17,6 +17,9 @@ public class CourseService {
     @Autowired
     private CourseRepository repo;
 
+    /**
+     * Adds a new couse to the database
+     * */
     public Course addCourse(CreateCourseRequest newCourse) {
         Course course = new Course();
         course.setTitle(newCourse.getTitle());
@@ -24,6 +27,9 @@ public class CourseService {
         return repo.save(course);
     }
 
+    /**
+     * Returns all the courses (or an empty list) in the database
+     * */
     public List<Course> courses() {
         List<Course> courses = new ArrayList<>();
 
@@ -32,11 +38,21 @@ public class CourseService {
         return courses;
     }
 
+    /**
+     * Returns an existing course from the database or null
+     * if the ID is missing
+     * */
     public Course getCourse(Integer id) {
         try {
             return repo.findById(id).get();
         } catch (NoSuchElementException e) {
             return null;
         }
+    }
+    /**
+     * Drops an existing course from the database
+     * */
+    public void deleteCourse(Integer id) {
+        repo.deleteById(id);
     }
 }

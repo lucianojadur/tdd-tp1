@@ -30,4 +30,13 @@ public class CourseController {
     public Course getCourse(@PathVariable("id") Integer id) {
         return service.getCourse(id);
     }
+
+    @DeleteMapping(path = "/courses/{id}")
+    public void deleteCourse(@PathVariable("id") Integer id) {
+        try{
+            service.deleteCourse(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
