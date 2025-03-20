@@ -25,3 +25,6 @@ replay_pid*
 
 # Other
 *.idea
+.gradle
+*/.html
+*/.xml
