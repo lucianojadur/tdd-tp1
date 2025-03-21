@@ -30,7 +30,7 @@ public class CourseService {
     /**
      * Returns all the courses (or an empty list) in the database
      * */
-    public List<Course> courses() {
+    public List<Course> courses()  throws NoSuchElementException {
         List<Course> courses = new ArrayList<>();
 
         repo.findAll().forEach(courses::add);

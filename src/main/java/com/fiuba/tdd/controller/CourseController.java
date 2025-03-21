@@ -7,7 +7,9 @@ import com.fiuba.tdd.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 public class CourseController {
@@ -16,6 +18,11 @@ public class CourseController {
     private CourseService service;
 
 
+    @GetMapping(path = "/")
+    public String home() {
+        return "¡¡Bienvendidos a ClassConnect!!";
+    }
+
     @PostMapping(path = "/courses", consumes = "application/json", produces = "application/json")
     public Course post(@RequestBody CreateCourseRequest newCourse) {
         return service.addCourse(newCourse);
@@ -23,7 +30,11 @@ public class CourseController {
 
     @GetMapping(path = "/courses", produces = "application/json")
     public List<Course> getCourses() {
-        return service.courses();
+        try{
+            return service.courses();
+        } catch (NoSuchElementException e) {
+            return new ArrayList<>();
+        }
     }
 
     @GetMapping(path = "/courses/{id}", produces = "application/json")
