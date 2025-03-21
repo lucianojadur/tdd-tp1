@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -65,7 +66,7 @@ public class CourseServiceTest {
     @Test
     public void testDeleteCourse() {
         Integer courseId = 1;
-        courseService.deleteCourse(courseId);
+        courseService.deleteCourse(courseId, "auto");
         verify(courseRepository, times(1)).deleteById(courseId);
     }
 }

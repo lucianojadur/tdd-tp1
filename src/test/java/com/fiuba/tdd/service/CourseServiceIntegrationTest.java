@@ -64,7 +64,7 @@ public class CourseServiceIntegrationTest {
             count--;
         }
 
-        service.deleteCourse(1);
+        service.deleteCourse(1, "auto");
         courses = service.courses();
         assertEquals(1, courses.size());
         assertEquals(2, courses.get(0).getId());

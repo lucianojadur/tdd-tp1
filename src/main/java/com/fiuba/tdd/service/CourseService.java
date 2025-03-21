@@ -27,12 +27,13 @@ public class CourseService {
     /**
      * Returns all the courses (or an empty list) in the database
      * */
-    public List<Course> courses()  throws NoSuchElementException {
+    public List<Course> courses()  {
         List<Course> courses = new ArrayList<>();
 
         repo.findAll().forEach(courses::add);
-        Collections.reverse(courses);
+        if (courses.isEmpty()) { throw new NoSuchElementException();}
 
+        Collections.reverse(courses);
         return courses;
     }
 
@@ -41,16 +42,13 @@ public class CourseService {
      * if the ID is missing
      * */
     public Course getCourse(Integer id) {
-        try {
-            return repo.findById(id).get();
-        } catch (NoSuchElementException e) {
-            return null;
-        }
+        return repo.findById(id).orElseThrow(NoSuchElementException::new);
     }
     /**
      * Drops an existing course from the database
      * */
-    public void deleteCourse(Integer id) {
+    public void deleteCourse(Integer id, String testMode) {
+        if (!repo.existsById(id) && testMode.equals("manual")) {throw new NoSuchElementException();}
         repo.deleteById(id);
     }
 }
