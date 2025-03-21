@@ -6,10 +6,7 @@ import com.fiuba.tdd.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CourseService {
@@ -34,6 +31,7 @@ public class CourseService {
         List<Course> courses = new ArrayList<>();
 
         repo.findAll().forEach(courses::add);
+        Collections.reverse(courses);
 
         return courses;
     }
